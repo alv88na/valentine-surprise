@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>A Special Surprise ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:linear-gradient(135deg,#571722,#ff7eb3,#220e02);
+  animation:bgMove 12s ease infinite alternate;
+}
+
+/* 🌈 Moving Gradient */
+@keyframes bgMove{
+  from{filter:hue-rotate(0deg);}
+  to{filter:hue-rotate(30deg);}
+}
+
+/* 💎 Glass Card */
+.card{
+  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,0.15);
+  padding:50px 60px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(0,0,0,0.2);
+  border:1px solid rgba(255,255,255,0.3);
+  animation:fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn{
+  from{transform:translateY(40px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+
+h1{
+  color:white;
+  margin-bottom:25px;
+  font-size:38px;
+  letter-spacing:1px;
+}
+
+/* 💌 Button */
+a{
+  text-decoration:none;
+  padding:18px 40px;
+  font-size:22px;
+  border-radius:50px;
+  background:white;
+  color:#ff4d6d;
+  font-weight:bold;
+  box-shadow:0 0 20px rgba(255,255,255,0.7);
+  transition:0.4s;
+}
+
+a:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 35px rgba(255,255,255,1);
+}
+
+/* 💖 Floating Hearts */
+.heart{
+  position:absolute;
+  color:white;
+  font-size:20px;
+  animation:float 8s linear infinite;
+  opacity:0.7;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>A Little Something For You ✨</h1>
+  <a href="proposal.html">click to know😘 💌</a>
+</div>
+
+<script>
+/* 💕 Generate floating hearts */
+for(let i=0;i<25;i++){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerText="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>

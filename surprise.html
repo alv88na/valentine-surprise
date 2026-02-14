@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Final Surprise</title>
+
+<style>
+body{
+  height:100vh;
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-family:"Segoe UI",sans-serif;
+  overflow:hidden;
+
+  /* 🌸 HOT PINK GLOSSY GRADIENT */
+  background:linear-gradient(
+      135deg,
+      #c57d9e,
+      #ff2a8a,
+      #ff4da6,
+      #342029
+  );
+  background-size:300% 300%;
+  animation:shimmerBG 8s ease infinite;
+}
+/* 💎 glossy shimmer movement */
+@keyframes shimmerBG{
+  0%{background-position:0% 0%;}
+  50%{background-position:10% 50%;}
+  100%{background-position:0% 0%;}
+}
+
+/* 🌸 Scene */
+.scene{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+/* 🐱 Disney Cute Cat */
+.cat{
+  width:160px;
+  height:140px;
+  background:#fff;
+  border-radius:70% 70% 60% 60%;
+  position:relative;
+  animation:floatCat 3s ease-in-out infinite;
+  box-shadow:0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* ears */
+.ear{
+  width:40px;
+  height:40px;
+  background:#fff;
+  position:absolute;
+  top:-20px;
+  transform:rotate(45deg);
+  animation:earWiggle 3s infinite;
+}
+.ear.left{left:20px;}
+.ear.right{right:20px;}
+
+/* face */
+.face{
+  position:absolute;
+  top:45px;
+  width:100%;
+  text-align:center;
+}
+
+/* eyes */
+.eye{
+  width:14px;
+  height:14px;
+  background:#333;
+  border-radius:50%;
+  display:inline-block;
+  margin:0 14px;
+  animation:blink 4s infinite;
+}
+
+/* nose */
+.nose{
+  width:10px;
+  height:10px;
+  background:pink;
+  border-radius:50%;
+  margin:8px auto;
+}
+
+/* tail */
+.tail{
+  width:60px;
+  height:20px;
+  background:#fff;
+  position:absolute;
+  right:-40px;
+  bottom:20px;
+  border-radius:20px;
+  transform-origin:left center;
+  animation:wag 1s infinite ease-in-out;
+}
+
+/* 💐 bouquet */
+.bouquet{
+  position:absolute;
+  right:-50px;
+  bottom:0;
+  font-size:60px;
+  cursor:pointer;
+  animation:glow 2s infinite alternate;
+}
+
+/* 🍫 chocolate */
+.choco{
+  font-size:55px;
+  cursor:pointer;
+  animation:sparkle 1.6s infinite alternate;
+}
+
+/* 💖 quote */
+#quote{
+  margin-top:20px;
+  font-size:22px;
+  color:white;              /* 🤍 white text */
+  font-weight:600;
+  text-align:center;
+  text-shadow:0 0 18px rgba(255,255,255,0.6); /* soft glow */
+}
+
+/* 💗 floating hearts */
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:rise 2s linear forwards;
+}
+
+/* 🎉 confetti */
+.confetti{
+  position:absolute;
+  font-size:28px;
+  animation:fall 2.5s linear forwards;
+}
+
+/* animations */
+@keyframes floatCat{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+  100%{transform:translateY(0);}
+}
+
+@keyframes blink{
+  0%,92%,100%{transform:scaleY(1);}
+  95%{transform:scaleY(0.2);}
+}
+
+@keyframes wag{
+  0%{transform:rotate(10deg);}
+  50%{transform:rotate(-10deg);}
+  100%{transform:rotate(10deg);}
+}
+
+@keyframes glow{
+  from{filter:drop-shadow(0 0 5px pink);}
+  to{filter:drop-shadow(0 0 20px hotpink);}
+}
+
+@keyframes earWiggle{
+  0%,100%{transform:rotate(45deg);}
+  50%{transform:rotate(35deg);}
+}
+
+@keyframes sparkle{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+@keyframes rise{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-120px);opacity:0;}
+}
+
+@keyframes fall{
+  from{transform:translateY(-100px) rotate(0deg);}
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+  <div class="cat">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+
+      <div class="face">
+          <div class="eye"></div>
+          <div class="eye"></div>
+          <div class="nose"></div>
+      </div>
+
+      <div class="tail"></div>
+  </div>
+
+  <div class="bouquet" onclick="celebrate()">💐</div>
+
+</div>
+
+
+
+<div id="quote">
+<b>For the man I love the most ❤️<br>
+and who stole my heart..<br>
+love you and thank you for existing❤️🥹</b><br>
+<br>
+<br>
+<br>
+<i>Touch the boquet to see something special just for youu...</i>
+</div>
+
+<script>
+function celebrate(){
+
+  const emojis=["🎉","💖","✨","🌸","💘"];
+
+  // 🎉 confetti
+  for(let i=0;i<60;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+    c.style.left=Math.random()*window.innerWidth+"px";
+    c.style.animationDuration=(1.5+Math.random()*2)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),2500);
+  }
+
+  // 💗 floating hearts near cat
+  for(let i=0;i<8;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💗";
+    h.style.left=(window.innerWidth/2 + (Math.random()*80-40))+"px";
+    h.style.top=(window.innerHeight/2)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
+  }
+
+  // cinematic tiny zoom
+  document.body.style.transform="scale(1.02)";
+  setTimeout(()=>document.body.style.transform="scale(1)",200);
+}
+</script>
+
+</body>
+</html>
