@@ -6,52 +6,138 @@
 body{
   height:100vh;
   margin:0;
-  overflow:hidden;
   display:flex;
   justify-content:center;
   align-items:center;
   flex-direction:column;
   background:linear-gradient(135deg,#46152d,#c20a69,#210207);
   font-family:sans-serif;
-  animation:bgMove 12s ease infinite alternate;
 }
-h1{color:white;font-size:40px;}
+
+h1{
+  color:white;
+  font-size:34px;
+  text-align:center;
+  max-width:700px;
+}
+
+.btnBox{
+  display:flex;
+  gap:60px;
+  margin-top:25px;
+}
+
 button{
   padding:15px 30px;
   font-size:20px;
   border:none;
   border-radius:30px;
-  margin:10px;
   cursor:pointer;
+  transition:0.4s ease;
 }
+
 #yes{background:#ff4d6d;color:white;}
-#no{background:white;color:#ff4d6d;position:absolute;}
+#no{background:white;color:#ff4d6d;}
 </style>
 </head>
 <body>
 
 <h1 id="question">Will you be my Valentine? 💖</h1>
 
-<button id="yes">YES</button>
-<button id="no">NO</button>
+<div class="btnBox">
+  <button id="yes">YES</button>
+  <button id="no">NO</button>
+</div>
 
 <script>
 let yesBtn=document.getElementById("yes");
 let noBtn=document.getElementById("no");
 let question=document.getElementById("question");
 
-let scale=1;
+let yesScale=1;
+let noScale=1;
+let clickCount=0;
 
-noBtn.addEventListener("mouseover",()=>{
-  noBtn.style.left=Math.random()*window.innerWidth+"px";
-  noBtn.style.top=Math.random()*window.innerHeight+"px";
-});
+/* 60 progressive questions leading emotionally toward YES */
+let questions=[
+"Maybe you clicked NO by mistake…?",
+"What if this is the start of something beautiful?",
+"Would you really skip a love story like this?",
+"Are you sure destiny didn't bring you here?",
+"What if this moment matters more than you think?",
+"Is your heart really saying no?",
+"What if love is waiting just one click away?",
+"Maybe try seeing it from my side?",
+"Wouldn't YES feel warmer?",
+"Just imagine us smiling together?",
+"Maybe give this a tiny chance?",
+"What if this becomes your favourite memory?",
+"Would you let me make you smile?",
+"Isn't curiosity asking for YES?",
+"What if love grows slowly from here?",
+"Maybe you're overthinking?",
+"Would one YES really hurt?",
+"What if this turns into forever?",
+"Are you protecting your heart… or hiding it?",
+"Maybe just listen to your softer side?",
+"Could YES be kinder?",
+"What if this page knows your heart already?",
+"Maybe the story wants a happy turn?",
+"Would you rewrite this ending?",
+"What if YES feels right later?",
+"Maybe you are closer to YES than you think?",
+"Would you trust this moment?",
+"What if this is fate testing you?",
+"Maybe love is patient… like this button?",
+"Could this be the start of our chapter?",
+"Would you walk one step closer?",
+"Maybe your smile is waiting behind YES?",
+"What if this page remembers your choice forever?",
+"Are you sure you don't want magic?",
+"Maybe destiny is persistent?",
+"What if your future self chooses YES?",
+"Would you let love try again?",
+"Maybe your heart is slowly changing?",
+"What if this is the safest YES ever?",
+"Could this be your softest decision?",
+"Maybe love is knocking gently?",
+"Would you open the door just a little?",
+"What if YES makes everything brighter?",
+"Maybe this is meant to be?",
+"Would you test the magic once?",
+"Maybe you're already convinced?",
+"What if the story needs your YES?",
+"Would you give us a chance?",
+"Maybe this is your sign?",
+"What if forever starts small?",
+"Would you let the light in?",
+"Maybe your smile already knows?",
+"What if this is our beginning?",
+"Would you choose happiness?",
+"Maybe YES is inevitable?",
+"What if every NO is guiding you to YES?",
+"Would you finally listen to your heart?",
+"Maybe this is the moment?",
+"Almost there… what does your heart say?",
+"So… will you be my Valentine? 💖"
+];
 
 noBtn.addEventListener("click",()=>{
-  question.innerText="please click yes🥺";
-  scale+=0.3;
-  yesBtn.style.transform=`scale(${scale})`;
-  noBtn.style.transform=`scale(${1/scale})`;
+
+  if(clickCount < questions.length){
+    question.innerText = questions[clickCount];
+  }else{
+    question.innerText = "Okay… destiny says YES now 💖";
+  }
+
+  clickCount++;
+
+  yesScale += 0.15;
+  yesBtn.style.transform=`scale(${yesScale})`;
+
+  noScale -= 0.07;
+  if(noScale<0.3) noScale=0.3;
+  noBtn.style.transform=`scale(${noScale})`;
 });
 
 yesBtn.addEventListener("click",()=>{
